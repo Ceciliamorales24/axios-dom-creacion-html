@@ -39,8 +39,9 @@ const createTodo = (title, userId) => {
         })
         .catch(handleError);
 };
+
 const deleteTodo = id => {
-    axios.delete(`${baseUrl}/${id}`)
+    return axios.delete(`${baseUrl}/${id}`)
         .then(res => {
             const index = lista.findIndex(todo => {
                 return todo.id == id;
@@ -49,6 +50,7 @@ const deleteTodo = id => {
         })
         .catch(handleError);
 };
+
 const modifyTodo = (id, title, userId, completed) => {
     let data = {
         id,
@@ -66,6 +68,7 @@ const modifyTodo = (id, title, userId, completed) => {
         })
         .catch(handleError);
 };
+
 // MI CODIGO
 const crearSpan = (text, nameClass) => {
     const span = document.createElement("span");
@@ -77,22 +80,36 @@ const crearSpan = (text, nameClass) => {
 
 const mostrarLista = () => {
     const ul = document.querySelector("#todo-list");
-    getTodos().then(data => { //hago esto aca para llamar al get todos y en el get todos tengo un return
+    ul.innerHTML="";
+ //hago esto aca para llamar al get todos y en el get todos tengo un return
         lista.map(item => {
             const ul = document.querySelector("#todo-list")
             const li = document.createElement("li");
             const title = crearSpan(item.title, "todo-title");
             const user = crearSpan(item.userId, "todo-user");
-            const completed = crearSpan(item.completed, "todo-completed")
-
+            const completed = crearSpan(item.completed, "todo-completed");
+            const buttonDelete = crearBotonEliminar(item.id);
             li.appendChild(title); //Se lo agrego al li
             li.appendChild(user);
             li.appendChild(completed);
+            li.appendChild(buttonDelete);
             ul.appendChild(li); // Y luego se lo agrega al ul
             //crear li con los span correspondientes y un button 
             // recorrer con el map. Hago map para recorrer el array
         })
-    })
 }
+
+const crearBotonEliminar = (id) => {
+    let button = document.createElement("button");
+    button.innerHTML = "Eliminar";
+    button.setAttribute("class", "todo-delete"); //asigno la clase que tiene el button
+    button.addEventListener("click", (event) => { //el evento o accion que va hacer
+        deleteTodo(id).then(mostrarLista);
+    });
+    return button;
+}
+
+getTodos().then(mostrarLista);
+
 
 
