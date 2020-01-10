@@ -130,8 +130,13 @@ buttonModificar.addEventListener("click", (event) => {
 
 });
 
+// Asegura de que se termino de ejecutar la lista
+getTodos().then(mostrarLista); //lo ejecutamos aca porque quiero que se ejecute apenas empiezo la lista
+// Siempre qe modifico mi lista tengo qe modificar mi html
+// deleteTodo().then(mostrarLista);
 
-getTodos().then(mostrarLista);
+
+
 
 
 
