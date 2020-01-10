@@ -58,7 +58,7 @@ const modifyTodo = (id, title, userId, completed) => {
         userId,
         completed
     };
-   return axios.put(`${baseUrl}/${id}`, data)
+    return axios.put(`${baseUrl}/${id}`, data)
         .then(res => {
             for (let i = 0; i < lista.length; i++) {
                 if (lista[i].id == id) {
@@ -115,14 +115,23 @@ const crearBotonEliminar = (id) => {
 //Agregar toDo a la lista
 const buttonAgregar = document.querySelector("#todo-create");
 buttonAgregar.addEventListener("click", (event) => {
-    const titulo = document.querySelector("#todo-title-create").value;
+    const title = document.querySelector("#todo-title-create").value;
     const user = document.querySelector("#todo-user-create").value;
 
-    createTodo(titulo, user).then(mostrarLista);
+    createTodo(title, user).then(mostrarLista);
 
 })
 
-const modificar
+// Modificar toDo de algun elemento de la lista
+const modificarNumber = document.querySelector("#todo-id-update");
+const modificarTitle = document.querySelector("#todo-title-update");
+const modificarId = document.querySelector("#todo-user-update");
+buttonModificar.addEventListener("click", (event) => {
+
+});
+
 
 getTodos().then(mostrarLista);
+
+
 
