@@ -24,16 +24,6 @@ const mostrarLista = () => {
     })
 }
 
-const crearBotonEliminar = () => {
-    let button = document.createElement("input");
-    button.innerHTML = "Eliminar";
-    button.addEventListener("click", (event) => {
-        const button = event.target;
-
-    })
-    return button;
-}
-
 // otra forma resuelto el ejercicio con Fede
 
 const armarHTML = () => {
